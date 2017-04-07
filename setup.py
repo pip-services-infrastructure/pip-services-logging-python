@@ -8,7 +8,7 @@ Links
 `````
 
 * `website <http://github.com/pip-services/pip-services>`
-* `development version <http://github.com/pip-services/pip-services-logging-python>`
+* `development version <http://github.com/pip-services-infrastructure/pip-services-logging-python>`
 
 """
 
