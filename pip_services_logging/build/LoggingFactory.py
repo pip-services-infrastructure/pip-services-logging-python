@@ -17,7 +17,7 @@ from pip_services_commons.refer import Descriptor
 from pip_services_commons.build import Factory
 
 LoggingFactoryDescriptor = Descriptor(
-    "pip-services-logging", "factory", "default", "default", "1.0"
+    "pip-services-logging", "factory", "service", "default", "1.0"
 )
 
 LoggingMemoryPersistenceDescriptor = Descriptor(
