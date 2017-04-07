@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    pip_services_logging.data.version1.LogMessageV1
+    pip_clients_logging.data.version1.LogMessageV1
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
     Log message implementation
@@ -11,8 +11,9 @@
 
 import datetime
 
-from pip_services_commons.log import LogLevel
+from pip_services_commons.log import LogLevel, LogLevelConverter
 from pip_services_commons.errors import ErrorDescription
+from pip_services_commons.convert import StringConverter, DateTimeConverter
 
 class LogMessageV1(object):
     time = None
@@ -32,9 +33,9 @@ class LogMessageV1(object):
 
     def to_json(self):
         return {
-            'time': self.time,
+            'time': StringConverter.to_nullable_string(self.time),
             'source': self.source,
-            'level': self.level,
+            'level': LogLevelConverter.to_integer(self.level),
             'correlation_id': self.correlation_id,
             'message': self.message,
             'error': self.error.to_json() if isinstance(self.error, ErrorDescription) else self.error
@@ -46,10 +47,10 @@ class LogMessageV1(object):
             return json
         
         log_message = LogMessageV1()
-        log_message.time = json['time']
-        log_message.source = json['source']
-        log_message.level = json['level']
-        log_message.correlation_id = json['correlation_id']
-        log_message.message = json['message']
-        log_message.error = ErrorDescription.from_json(json['error'])
+        log_message.time = DateTimeConverter.to_nullable_datetime(json['time'] if 'time' in json else None)
+        log_message.source = json['source'] if 'source' in json else None
+        log_message.level = LogLevelConverter.to_log_level(json['level'] if 'level' in json else None)
+        log_message.correlation_id = json['correlation_id'] if 'correlation_id' in json else None
+        log_message.message = json['message'] if 'message' in json else None
+        log_message.error = ErrorDescription.from_json(json['error'] if 'error' in json else None)
         return log_message

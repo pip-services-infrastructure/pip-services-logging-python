@@ -56,7 +56,7 @@ class LoggingCommandSet(CommandSet):
 
     def make_write_message_command(self):
         def handler(correlation_id, args):
-            message = LogMessageV1.from_json(args.get("filter"))
+            message = LogMessageV1.from_json(args.get("message"))
             return self._controller.write_message(correlation_id, message)
 
         return Command(
@@ -67,7 +67,7 @@ class LoggingCommandSet(CommandSet):
 
     def make_write_messages_command(self):
         def handler(correlation_id, args):
-            items = args.get_as_array("messages")
+            items = args.get("messages")
             messages = []
             for item in items:
                 message = LogMessageV1.from_json(item)
