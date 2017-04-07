@@ -1,0 +1,16 @@
+/dist
+/.idea
+.DS_Store
+*.pyc
+*.pyo
+env
+env*
+*.egg
+*.egg-info
+_mailinglist
+.tox
+.cache/
+.idea/
+/config/config.yaml
+/data/logging.test.json
+/data/logging.json
