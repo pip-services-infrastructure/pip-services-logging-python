@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-    pip_services_logging.logic.__init__
+    pip_services_logging.container.__init__
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
-    Logic module initialization
+    Container module initialization
     
     :copyright: Conceptual Vision Consulting LLC 2015-2016, see AUTHORS for more details.
     :license: MIT, see LICENSE for more details.
 """
 
 __all__ = [
-    'ILoggingBusinessLogic', 'LoggingController'
+    'LoggingProcess'
 ]
 
-from .ILoggingBusinessLogic import ILoggingBusinessLogic
-from .LoggingController import LoggingController
+from .LoggingProcess import LoggingProcess

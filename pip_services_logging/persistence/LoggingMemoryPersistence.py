@@ -35,9 +35,9 @@ class LoggingMemoryPersistence(object, ILoggingPersistence, IConfigurable):
 
 
     def configure(self, config):
-        self._max_page_size = config.get_as_integer_with_default('options.max_page_size', this._max_page_size)
-        self._max_error_size = config.get_as_integer_with_default('options.max_error_size', this._max_error_size)
-        self._max_total_size = config.get_as_integer_with_default('options.max_total_size', this._max_total_size)
+        self._max_page_size = config.get_as_integer_with_default('options.max_page_size', self._max_page_size)
+        self._max_error_size = config.get_as_integer_with_default('options.max_error_size', self._max_error_size)
+        self._max_total_size = config.get_as_integer_with_default('options.max_total_size', self._max_total_size)
 
 
     def _match_string(self, value, search):
