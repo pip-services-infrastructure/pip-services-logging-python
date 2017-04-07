@@ -18,7 +18,7 @@ from setuptools import find_packages
 setup(
     name='pip_services_logging',
     version='2.0.0',
-    url='http://github.com/pip-services/pip-services-logging-python',
+    url='http://github.com/pip-services-infrastructure/pip-services-logging-python',
     license='MIT',
     description='Logging microservice for Pip.Services in Python',
     author='Conceptual Vision Consulting LLC',

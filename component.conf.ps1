@@ -8,4 +8,4 @@ $TestInclude='./test/'
 $Deploy = 'none'
 $Run = 'process'
 $RunStartCommand = 'python'
-$RunStartArguments = @('-m', './bin/run.py', './config/config.yaml')
+$RunStartArguments = @('./bin/run.py', './config/config.yaml')
