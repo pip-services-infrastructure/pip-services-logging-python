@@ -35,7 +35,7 @@ as zip downloadable archieves.
 
 ## Run
 
-Add **config.json** file to the root of the microservice folder and set configuration parameters.
+Add **config.yaml** file to the root of the microservice folder and set configuration parameters.
 As the starting point you can use example configuration from **config.example.yaml** file. 
 
 Example of microservice configuration
@@ -70,88 +70,71 @@ node run
 The easiest way to work with the microservice is to use client SDK. 
 The complete list of available client SDKs for different languages is listed in the [Quick Links](#links)
 
-If you use Node.js then you should add dependency to the client SDK into **package.json** file of your project
-```javascript
-{
-    dependencies: {
-        ...
-        "pip-clients-logging-node": "^1.0.*"
-        ...
-    }
-}
+If you use Python then you should add dependency to the client SDK into **requirements.txt** file of your project
+```text
+pip_clients_logging_node>=1.0
 ```
 
 Inside your code get the reference to the client SDK
-```javascript
-var sdk = new require('pip-clients-logging-node');
+```python
+import datetime
+from pip_services_commons.log import LogLevel
+from pip_services_commons.config import ConfigParams
+from pip_services_commons.data import FilterParams, PagingParams
+from pip_clients_logging_node.version1 import LoggingHttpClientV1, LoggingMessageV1
 ```
 
 Define client configuration parameters that match configuration of the microservice external API
-```javascript
-// Client configuration
-var config = {
-    connection: {
-        protocol: 'http',
-        host: 'localhost', 
-        port: 8003
-    }
-};
+```python
+# Client configuration
+config = ConfigParams.from_tuples(
+    "connection.protocol", "http",
+    "connection.host", "localhost", 
+    "connection.port", 8003
+)
 ```
 
 Instantiate the client and open connection to the microservice
-```javascript
-// Create the client instance
-var client = sdk.LoggingHttpClientV1(config);
+```python
+# Create the client instance
+client = LoggingHttpClientV1(config)
 
-// Connect to the microservice
-client.open(null, function(err) {
-    if (err) {
-        console.error('Connection to the microservice failed');
-        console.error(err);
-        return;
-    }
-    
-    // Work with the microservice
+# Connect to the microservice
+try:
+    client.open(None)
+
+    # Work with the microservice
     ...
-});
+except Exception as ex:
+    print('Connection to the microservice failed')
+    print(ex)
 ```
 
 Now the client is ready to perform operations
-```javascript
-// Log a message
-client.writeMessage(
-    null,
-    {
-        time: new Date(),
-        level: 2,
-        message: 'Restarted server'
-    },
-    function (err, message) {
-        ...
-    }
-);
+```python
+# Log a message
+message = client.write_message(
+    None,
+    LogMessageV1(LogLevel.Info, None, None, None, "Restarted server")
+)
+...
 ```
 
-```javascript
-var now = new Date();
+```python
+# Remember: all dates shall be in utc
+now = datetime.datetime.utcnow()
 
-// Get the list system activities
-client.readMessages(
-    null,
-    {
-        from_time: new Date(now.getTime() - 24 * 3600 * 1000),
-        to_time: now,
-        search: 'server'
-    },
-    {
-        total: true,
-        skip: 0, 
-        take: 10  
-    },
-    function(err, page) {
-    ...    
-    }
-);
+# Get the list system activities
+page = client.read_messages(
+    None,
+    FilterParams.from_tuples(
+        "from_time", datetime.datetime.utcnow() - datetime.timediff(days=1),
+        "to_time": datetime.datetime.utcnow(),
+        "search": "server"
+    ),
+    PagingParams(0, 10, True),
+)
+...
 ```    
 
 ## Acknowledgements

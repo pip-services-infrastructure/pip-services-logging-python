@@ -10,21 +10,12 @@ This document provides high-level instructions on how to build and test the micr
 
 ## <a name="setup"></a> Environment Setup
 
-This is a Node.js project and you have to install Node.js tools. 
-You can download them from official Node.js website: https://nodejs.org/en/download/ 
+This is a Python project and you have to install Python 2.7. 
+You can download them from official Python website: https://www.python.org/downloads/
 
 After node is installed you can check it by running the following command:
 ```bash
-node -version
-```
-
-Then you need to configure node tools:
-```bash
-# Install typescript compiler
-npm install typescript -g
- 
-# Install mocha test runner
-npm install mocha -g
+python --version
 ```
 
 To work with GitHub code repository you need to install Git from: https://git-scm.com/downloads
@@ -37,14 +28,14 @@ you may need to install database servers:
 
 After your environment is ready you can check out microservice source code from the Github repository:
 ```bash
-git clone git@github.com:pip-services-infrastructure/pip-services-logging.git
+git clone git@github.com:pip-services-infrastructure/pip-services-logging-python.git
 ```
 
 Then go to the project folder and install dependent modules:
 
 ```bash
 # Install dependencies
-npm install
+pip install -r requirements.txt
 ```
 
 If you worked with the microservice before you can check out latest changes and update the dependencies:
@@ -53,24 +44,7 @@ If you worked with the microservice before you can check out latest changes and 
 git pull
 
 # Update dependencies
-npm update
-```
-
-## <a name="build"></a> Building
-
-This microservice is written in TypeScript language which is transcompiled into JavaScript.
-So, if you make changes to the source code you need to compile it before running or committing to github.
-The process will output compiled javascript files into /bin folder.
-
-```bash
-tsc
-```
-
-When you do continuous edit-build-test cycle, you can run typescript compiler with --watch option
-to detect and compile changes you make automatically:
-
-```bash
-tsc --watch
+pip update
 ```
 
 ## <a name="test"></a> Testing
@@ -87,12 +61,12 @@ for database and dependent microservices. For more information check [Configurat
 
 Command to run unit tests:
 ```bash
-npm test
+py.test test -s
 ```
 
 You can also execute benchmarks as:
 ```bash
-npm run benchmark
+???
 ```
 
 ## <a name="contrib"></a> Contributing

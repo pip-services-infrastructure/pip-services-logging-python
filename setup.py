@@ -29,7 +29,9 @@ setup(
     zip_safe=True,
     platforms='any',
     install_requires=[
-        'iso8601', 'PyYAML', 'bottle', 'requests'
+        'iso8601', 'PyYAML', 'bottle', 'requests',
+        'pip_services_commons', 'pip_services_container',
+        'pip_services_data', 'pip_services_net'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',

@@ -1,7 +1,7 @@
 # Configuration Guide <br/> Logging Microservice
 
 Logging microservice configuration structure follows the 
-[standard configuration](https://github.com/pip-services/pip-services-container-node/doc/Configuration.md) 
+[standard configuration](https://github.com/pip-services/pip-services-container-python/doc/Configuration.md) 
 structure. 
 
 * [persistence](#persistence)
@@ -9,7 +9,6 @@ structure.
 * [controller](#controller)
 * [service](#service)
   - [http](#service_http)
-  - [seneca](#service_seneca)
 
 ## <a name="persistence"></a> Persistence
 
@@ -17,7 +16,7 @@ This microservice supports currently supports only in-memory persistence.
 In the future other types of persistence will be added like file, AWS S3, etc.
 
 For more information on this section read 
-[Pip.Services Configuration Guide](https://github.com/pip-services/pip-services-container-node/doc/Configuration.md#persistence)
+[Pip.Services Configuration Guide](https://github.com/pip-services/pip-services-container-python/doc/Configuration.md#persistence)
 
 ### <a name="persistence_memory"></a> Memory
 
@@ -49,7 +48,7 @@ Example:
 ## <a name="service"></a> Services
 
 The **service** components (also called endpoints) expose external microservice API for the consumers. 
-Each microservice can expose multiple APIs (HTTP/REST, Thrift or Seneca) and multiple versions of the same API type.
+Each microservice can expose multiple APIs (HTTP/REST or Thrift) and multiple versions of the same API type.
 At least one service is required for the microservice to run successfully.
 
 ### <a name="service_http"></a> Http
@@ -71,24 +70,5 @@ Example:
     port: 3000
 ```
 
-### <a name="service_seneca"></a> Seneca
-
-Seneca service has the following configuration properties:
-- connection: object - Seneca transport configuration options. See http://senecajs.org/api/ for details.
-  - type: string - Seneca transport type 
-  - host: string - IP address/hostname binding (default is '0.0.0.0')
-  - port: number - Seneca port number
-
-A detail description of Seneca protocol version 1 can be found [here](SenecaProtocolV1.md)
-
-Example:
-```yaml
-- descriptor: "pip-services-logging:service:seneca:default:1.0"
-  connection:
-    protocol: "http"
-    host: "0.0.0.0"
-    port: 3000
-```
-
 For more information on this section read 
-[Pip.Services Configuration Guide](https://github.com/pip-services/pip-services-container-node/doc/Configuration.md#deps)
+[Pip.Services Configuration Guide](https://github.com/pip-services/pip-services-container-python/doc/Configuration.md#deps)
