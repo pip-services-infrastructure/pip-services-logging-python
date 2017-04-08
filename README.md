@@ -17,6 +17,8 @@ This microservice has no dependencies on other microservices.
 * [Development Guide](doc/Development.md)
 * [Configuration Guide](doc/Configuration.md)
 * [Deployment Guide](doc/Deployment.md)
+* Implementations in other languages
+  - [Node.js](https://github.com/pip-services-infrastructure/pip-services-logging-node)
 * Client SDKs
   - [Node.js SDK](https://github.com/pip-services/pip-clients-logging-node)
   - [Python SDK](https://github.com/pip-services/pip-clients-logging-python)
